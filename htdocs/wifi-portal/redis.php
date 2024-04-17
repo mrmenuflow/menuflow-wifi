@@ -1,4 +1,6 @@
 <?php
+
+echo '<h1>'.$_SERVER['REMOTE_ADDR'].'</h1>';
 define('TEST_KEY', 'are_we_glued');
 $redis = new Redis();
 try {
