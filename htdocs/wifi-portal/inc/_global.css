@@ -1,0 +1,115 @@
+body {
+	height: 100%;
+	font-family: "ltc-caslon-pro", serif;
+	font-weight: 400;
+	color: #746A60;
+	background: #efded7;
+}
+.link {
+	color: #746A60;
+}
+.link:hover {
+	color: #59524a;
+}
+p {
+	font-size: 13px;
+	font-family: Manrope, sans-serif;
+}
+.launch-screen {
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	height: 100%;
+	font-family: Manrope, sans-serif;
+	font-size: 13px;
+	line-height: 20px;
+	color: #746A60;
+	background-color: transparent;
+	background: url('la-maison-ani-backdrop.png') center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.master-button {  
+	font-size: 21px;
+	font-weight: 600;
+	font-style: italic;
+	font-family: "ltc-caslon-pro", serif;
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	color: #FFF;
+	line-height: 13px;
+	height: 52px;
+	max-height: 52px;
+	padding: 1rem 1rem;
+	border-radius: 7.5px;
+	border-color: #BC9D95;
+	background:#BC9D95;
+}
+.master-button:hover { 
+	color: #FFF;
+	border-color: #aa8d86;
+	background:#aa8d86;
+}
+h2 { 
+	font-family: "ltc-caslon-pro", serif;
+	font-weight: 700;
+	font-style: normal;
+	font-size: 1.688rem;
+	color: #746A60;
+	line-height: 1.35;
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	margin-bottom: 8px; 
+}
+.terms_info { 
+	display: none;
+	font-family: Manrope, sans-serif;
+	font-weight: 400;
+}
+.terms_info .switch {
+	float: right;
+	margin-top:-1px;
+	margin-right: 5px;
+	height:24px;
+}
+.offcanvas {
+	height:225px;
+	border: 3px solid #e6d5cd;
+	border-radius: 18.5px;
+	background: rgba(239, 223, 218, 0.75);
+}
+.close_terms {
+	display:none;
+	width:28px;
+	color:#746A60;
+}
+.launch-screen {
+	display:none;
+}
+input {
+	height:54px;
+	width:60%;
+	font-size:21px;
+	font-weight:500;
+	font-family: Manrope, sans-serif;
+	line-height:54px;
+	color: #746A60;
+	padding: 1rem 1rem;
+	border:3px solid #e6d5cd!important;
+	border-radius:8.5px;
+	background: #f1e8e4; 
+}
+.connecting {
+	font-size: 20px;
+}
+.spinner-border {
+	width:1.5rem;
+	height:1.5rem; 
+	color: #746A60;
+}

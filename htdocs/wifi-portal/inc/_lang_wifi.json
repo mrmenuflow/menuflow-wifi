@@ -18,7 +18,7 @@
 		"modal_age_btn_1":"I am over 18",
 		"modal_age_btn_2":"No, I am underage",
 		"modal_cookie_title":"Guest WiFi Access",
-		"modal_cookie_intro":"To connect to the guest wifi please click the button below. By using this service you agree to these <a id=\"policy\" href=\"#\" class=\"link\">terms and conditions</a>.",
+		"modal_cookie_intro":"To connect to the guest wifi please click the button below. By using this service you agree to these <a id=\"view_terms\" href=\"#\" class=\"link\">terms and conditions</a>.",
 		"modal_cookie_btn_1":"Cookie settings",
 		"modal_cookie_btn_2":"Connect to the Internet",		
 		"modal_no_menu_title":"Oops!",
