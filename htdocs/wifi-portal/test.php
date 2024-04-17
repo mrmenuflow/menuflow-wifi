@@ -3,14 +3,16 @@
 // start session management
 session_start();
 
-$count = isset($_SESSION['count']) ? $_SESSION['count'] : 1;
+if (isset($_SESSION['count'])) {
+	$_SESSION['count'] = $_SESSION['count']++;
+}
+else {
+	$_SESSION['count'] = 1
+}
 
-echo $count;
-
-$_SESSION['count'] = $count++;
 echo '<pre>';
-	print_r($_SESSION['test']);
-echo '</pre><hr>';
+	print_r($_SESSION['count']);
+echo '</pre><br><hr><br>';
 
 phpinfo();
 
