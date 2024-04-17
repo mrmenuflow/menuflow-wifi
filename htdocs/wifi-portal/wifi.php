@@ -122,6 +122,7 @@ $trans = $translation['en'];
 
 <div class="launch-screen" style="display:none;">
 	<!--<div class="logo"></div>-->
+	<h2><?php echo $_SERVER['SERVER_ADDR'];?></h2>
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:225px;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
@@ -249,17 +250,11 @@ setTimeout(function(){
 window.scrollTo(0,1);
 
 // action sheet 
-var actionsheet_1 = document.getElementById('privacy');
-var actionsheet_2 = document.getElementById('guest_name');
-var actionsheet_3 = document.getElementById('guest_email');
-var actionsheet_4 = document.getElementById('guest_optin');
-var actionsheet_5 = document.getElementById('guest_connect');
-
-var as_launch  = new bootstrap.Offcanvas(actionsheet_1);
-var as_guest 	 = new bootstrap.Offcanvas(actionsheet_2);
-var as_email 	 = new bootstrap.Offcanvas(actionsheet_3);
-var as_optin 	 = new bootstrap.Offcanvas(actionsheet_4);
-var as_connect = new bootstrap.Offcanvas(actionsheet_5);
+var as_launch  = new bootstrap.Offcanvas('#privacy');
+var as_guest 	 = new bootstrap.Offcanvas('#guest_name');
+var as_email 	 = new bootstrap.Offcanvas('#guest_email');
+var as_optin 	 = new bootstrap.Offcanvas('#guest_optin');
+var as_connect = new bootstrap.Offcanvas('#guest_connect');
 
 // browser lang
 var userLang = navigator.language || navigator.userLanguage;
