@@ -10,7 +10,7 @@ $trans = $translation['en'];
 <html>
 <head>
 	<!-- platform v4 -->
-	<title>WiFi by Menuflow</title>
+	<title>Guest WiFi by Menuflow</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone=no">
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -83,14 +83,12 @@ $trans = $translation['en'];
 			line-height: 13px;
 			letter-spacing: -1px;
 			text-transform: lowercase;
-			
 			color: #FFF;
 			height: 52px;
 			max-height: 52px;
 		}
-		.privacy { color: #FFF; border: 1px solid <?php echo $_SESSION['config']['navbar_item_bg_active_hex'];?>; background: #FFF; text-transform: normal!important; }
-			/* basket modal styles */
-		.modal-header { background: <?php echo $_SESSION['config']['navbar_bg_hex'];?>; color: <?php echo $_SESSION['config']['navbar_item_hex'];?>; }
+
+
 		h2 { 
 			color: #746A60;
 			font-family: "ltc-caslon-pro", serif;
@@ -102,15 +100,12 @@ $trans = $translation['en'];
 			text-transform: lowercase;
 			letter-spacing: -1px;
 		}
-		.cookie_info h6 {
-			
-		}
-		.cookie_info { 
+		.terms_info { 
 			display: none;
 			font-family: Manrope, sans-serif;
 			font-weight: 400;
 		}
-		.cookie_info .switch {
+		.terms_info .switch {
 			float:right;
 			height:24px;
 			margin-top:-1px;
@@ -131,7 +126,7 @@ $trans = $translation['en'];
 					<h2><?php echo $trans['modal_cookie_title'];?></h2>
 					<p class="mt-3"><?php echo $trans['modal_cookie_intro'];?></p>
 			</div>	
-			<div class="w-100 p-2 pt-0 cookie_info">
+			<div class="w-100 p-2 pt-0 terms_info">
 				<p class="mt-3">
 					When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. 
 					This information might be about your preferences or device and is mostly used to make the site work. 
@@ -151,7 +146,6 @@ $trans = $translation['en'];
 
 
 <div class="name-screen">
-	<!--<div class="logo"></div>-->
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:195px!important;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="guest_name" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
@@ -172,7 +166,6 @@ $trans = $translation['en'];
 </div>
 
 <div class="email-screen">
-	<!--<div class="logo"></div>-->
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:195px;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="guest_email" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
@@ -193,7 +186,6 @@ $trans = $translation['en'];
 </div>
 
 <div class="optin-screen">
-	<!--<div class="logo"></div>-->
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:260px;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="guest_optin" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
@@ -216,11 +208,9 @@ $trans = $translation['en'];
 </div>
 
 <div class="connecting-screen">
-	<!--<div class="logo"></div>-->
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:225px;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="guest_connect" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0 text-center mt-5">
-
 				<h2>merci<br><span style="font-size: 20px;">We are connecting you to the internet...</span></h2>
 				<div class="spinner-border mt-2" role="status" style="width:1.5rem;height:1.5rem; color: #746A60;">
 					<span class="visually-hidden">Loading...</span>
@@ -264,7 +254,7 @@ if($.inArray(locale, locale_list) != -1) { var user_locale = locale; } else { va
 
 $('body').on('click', '#policy', function(e) {
 	$('.offcanvas').animate({height:'90%'}, 500);
-	$('.cookie_info').fadeIn(800);
+	$('.terms_info').fadeIn(800);
 	$('.offcanvas').css("background","rgba(239, 223, 218, 1)");
 	$('.close_terms').fadeIn(700);
 });
@@ -272,7 +262,7 @@ $('body').on('click', '#policy', function(e) {
 $('body').on('click', '.close_terms', function(e) {
 		$('.offcanvas').animate({height:'225px'}, 500);
 		$('.close_terms').fadeOut(400);
-		$('.cookie_info').fadeOut(400);
+		$('.terms_info').fadeOut(400);
 });
 
 $('body').on('click', '#ok', function(e) {
