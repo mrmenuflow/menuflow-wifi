@@ -1,0 +1,23 @@
+version: 0.0
+os: linux
+files:
+  - source: htdocs
+    destination: /var/www/
+  - source: config/nginx
+    destination: /etc/nginx/conf.d/
+  - source: config/php
+    destination: /etc/php.d/
+hooks:
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 300
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+  AfterInstall:
+    - location: scripts/environment.py
+      timeout: 300
+    - location: scripts/environment.sh
+      timeout: 300
+    - location: scripts/start_server.sh
+      timeout: 300

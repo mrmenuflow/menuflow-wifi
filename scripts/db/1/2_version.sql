@@ -1,0 +1,1 @@
+insert into db_schema_versions (version) values (1)
