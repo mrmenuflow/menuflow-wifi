@@ -3,12 +3,14 @@
 // start session management
 session_start();
 
-$_SESSION['test'] = array();
-array_push($_SESSION['test'], $_SERVER['SERVER_ADDR']);
+$count = isset($_SESSION['count']) ? $_SESSION['count'] : 1;
 
+echo $count;
+
+$_SESSION['count'] = $count++;
 echo '<pre>';
 	print_r($_SESSION['test']);
-echo '</pre>';
+echo '</pre><hr>';
 
 phpinfo();
 
