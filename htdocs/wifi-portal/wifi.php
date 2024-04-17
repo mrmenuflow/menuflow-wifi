@@ -1,11 +1,5 @@
 <?php
 
-// start session management
-session_start();
-
-$_SESSION['test'] = array();
-array_push($_SESSION['test'], $_SERVER['SERVER_ADDR']);
-
 // include api proxy
 include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
 
@@ -127,8 +121,6 @@ $trans = $translation['en'];
 <body>
 
 <div class="launch-screen" style="display:none;">
-	<!--<div class="logo"></div>-->
-	<h2><?php echo '<pre>'.print_r($_SESSION).'</pre>';?></h2>
 	<div class="offcanvas offcanvas-bottom m-0" style="border: 3px  solid #e6d5cd!important;border-radius:18.5px;height:225px;background: rgba(239, 223, 218, 0.75);" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
