@@ -3,6 +3,9 @@
 // start session management
 session_start();
 
+// include api proxy
+include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
+
 // get url data to work out unifi site
 $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
 $dir = $parsedUrl['path'];
@@ -10,10 +13,17 @@ $path = explode('/',  $dir);
 $path = array_filter($path);
 
 // unifi dataset
-$vendor = 'ubnt';
 $vendor_id = $path[3];
 $mac_wap = $_GET['ap'];
 $mac_usr = $_GET['id'];
+
+
+// do api call
+$rsp = call_api('GET', '/wifi/'.$vendor_id);  
+
+echo '<pre>';
+print_r($rsp);
+echo '</pre>';
 
 // build profile array
 if (!isset($_SESSION['profile'])) {
