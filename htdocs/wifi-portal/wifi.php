@@ -7,14 +7,12 @@ session_start();
 $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
 $dir = $parsedUrl['path'];
 $path = explode('/',  $dir);
-$lid_traget = $path[2];
-
-
-
+$path = array_filter($path);
+$lid_traget = $path(3);
 echo '<pre>';
 
 echo $parsedUrl.'<hr>';
-echo $lid_traget.'<hr>';
+echo 'Site ID: '.$lid_traget.'<hr>';
 print_r($path);
 
 print_r($_GET);
