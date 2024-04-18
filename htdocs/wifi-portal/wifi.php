@@ -1,5 +1,21 @@
 <?php
 
+// start session management
+session_start();
+
+echo '<pre>';
+print_r($_GET);
+
+
+// build profile array
+if (!isset($_SESSION['profile'])) {
+	$_SESSION['profile'] = array('venue' => array('serivce_id' => 0, 'location_id'	=> 0, 'connected_at' => ''), 'ap' => array('vendor' => '', 'vendor_id' => '', 'ap_mac' => '', 'auth_url' => '', 'auth_usr' => '', 'auth_psw' => ''), 'device' => array('mac' => '', 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
+}
+
+print_r($_SESSION['profile'] );
+echo '</pre>';
+exit;
+
 // include api proxy
 include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
 
@@ -48,7 +64,7 @@ $trans = $translation['en'];
 </div>
 
 <div class="name-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_name" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas sm offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_name" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
 				<h2>Bonjour Mon Ami</h2>
@@ -65,7 +81,7 @@ $trans = $translation['en'];
 </div>
 
 <div class="email-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_email" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas sm offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_email" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
 				<h2>email address</h2>
@@ -119,6 +135,7 @@ $trans = $translation['en'];
 <script src="https://cdn.menuflow.com/app/mnu/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.menuflow.com/app/mnu/bootstrap.bundle.5.2.3.min.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-<script src="inc/_global.js"></script>
+<script src="inc/_global.js" id="app" sid="<?php echo $_SESSION['config']['service_id'];?>" lid="<?php echo $_SESSION['config']['location_id'];?>" mac="<?php echo $_SESSION['config']['mac'];?>" vnd="<?php echo $_SESSION['config']['vendor'];?>"></script>
+
 </body>
 </html>

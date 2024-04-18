@@ -1,3 +1,9 @@
+// get data
+var sid = document.getElementById('app').getAttribute('sid');
+var lid = document.getElementById('app').getAttribute('lid');
+var mac = document.getElementById('app').getAttribute('mac');
+var vnd = document.getElementById('app').getAttribute('vnd');
+
 // transitions
 $('.launch-screen').fadeIn(1850);
 setTimeout(function(){ as_launch.show(); }, 2000);
@@ -16,7 +22,15 @@ var locale = userLang.split('-')[0];
 if($.inArray(locale, locale_list) != -1) { var user_locale = locale; } else { var user_locale = 'en'; }
 
 // device detection
+var ipad = /ipad/i.test(navigator.userAgent.toLowerCase());
+var iphone = /iphone/i.test(navigator.userAgent.toLowerCase());
+var ipod = /ipod/i.test(navigator.userAgent.toLowerCase());
+var android = /android/i.test(navigator.userAgent.toLowerCase());
+var mac = /macintosh/i.test(navigator.userAgent.toLowerCase());
+var pc = /windows/i.test(navigator.userAgent.toLowerCase());
+if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'iPhone'; var ico = 'apl'; } else if (ipod) { var dev = 'iPod'; var ico = 'apl'; } else if (android) { var dev = 'Android'; var ico = 'dro'; } else if (mac) { var dev = 'Macbook'; var ico = 'apl'; } else if (pc) { var dev = 'PC Windows'; var ico = 'win'; } else { var dev = 'unknown'; var ico = 'unk';}
 
+// expand terms
 $('body').on('click', '#view_terms', function(e) {
 	$('.offcanvas').animate({height:'90%'}, 500);
 	$('.terms_info').fadeIn(800);
@@ -24,30 +38,35 @@ $('body').on('click', '#view_terms', function(e) {
 	$('.close_terms').fadeIn(700);
 });
 
+// hide terms
 $('body').on('click', '.close_terms', function(e) {
 	$('.offcanvas').animate({ height:'225px' }, 500);
 	$('.close_terms').fadeOut(400);
 	$('.terms_info').fadeOut(400);
 });
 
+// move to name screen
 $('body').on('click', '#ok', function(e) {
 	setTimeout(function(){ 
 		as_guest.show(); 
 	}, 700);
 });	
 
+// move to email screen
 $('body').on('click', '#name_submit', function(e) {
 	setTimeout(function(){ 
 		as_email.show(); 
 	}, 700);
 });	
 
+// move to opt-in screen
 $('body').on('click', '#email_submit', function(e) {
 	setTimeout(function(){ 
 		as_optin.show(); 
 	}, 700);
 });	
 
+// move to connecting screen
 $('body').on('click', '#opt_in,#opt_out', function(e) {
 	setTimeout(function(){ 
 		as_connect.show(); 

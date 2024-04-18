@@ -78,11 +78,14 @@ h2 {
 	margin-right: 5px;
 	height:24px;
 }
-.offcanvas {
-	height:225px;
-	border: 3px solid #e6d5cd;
+.offcanvas, .offcanvas.sm {
+	height:225px!important;
 	border-radius: 18.5px;
-	background: rgba(239, 223, 218, 0.75);
+	border: 3px solid #e6d5cd;
+	background: rgba(239,223,218,0.75);
+}
+.offcanvas.sm {
+	height:190px!important;
 }
 .close_terms {
 	display:none;
