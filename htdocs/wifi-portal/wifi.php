@@ -8,20 +8,19 @@ $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
 $dir = $parsedUrl['path'];
 $path = explode('/',  $dir);
 $path = array_filter($path);
-$lid_traget = $path[3];
-echo '<pre>';
 
-echo $parsedUrl.'<hr>';
-echo 'Site ID: '.$lid_traget.'<hr>';
-print_r($path);
-
-print_r($_GET);
+// unifi dataset
+$vendor = 'ubnt';
+$vendor_id = $path[3];
+$mac_wap = $_GET['ap'];
+$mac_usr = $_GET['id'];
 
 // build profile array
 if (!isset($_SESSION['profile'])) {
-	$_SESSION['profile'] = array('venue' => array('serivce_id' => 0, 'location_id'	=> 0, 'connected_at' => ''), 'ap' => array('vendor' => '', 'vendor_id' => '', 'ap_mac' => '', 'auth_url' => '', 'auth_usr' => '', 'auth_psw' => ''), 'device' => array('mac' => '', 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
+	$_SESSION['profile'] = array('venue' => array('serivce_id' => 0, 'location_id'	=> 0, 'connected_at' => ''), 'ap' => array('vendor' => $vendor, 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => '', 'auth_usr' => '', 'auth_psw' => ''), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
 }
 
+echo '<pre>';
 print_r($_SESSION['profile'] );
 echo '</pre>';
 exit;
