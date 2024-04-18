@@ -3,9 +3,19 @@
 // start session management
 session_start();
 
-echo '<pre>';
-print_r($_GET);
+// get url data to work out unifi site
+$parsedUrl = parse_url($_SERVER['REQUEST_URI']);
+$dir = $parsedUrl['path'];
+$path = explode('/',  $dir);
+$path = array_filter($path);
 
+echo '<pre>';
+
+echo $parsedUrl.'<hr>';
+echo $dir.'<hr>';
+print_r($path);
+
+print_r($_GET);
 
 // build profile array
 if (!isset($_SESSION['profile'])) {
