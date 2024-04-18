@@ -1,9 +1,3 @@
-// get data
-var sid = document.getElementById('app').getAttribute('sid');
-var lid = document.getElementById('app').getAttribute('lid');
-var mac = document.getElementById('app').getAttribute('mac');
-var vnd = document.getElementById('app').getAttribute('vnd');
-
 // transitions
 $('.launch-screen').fadeIn(1850);
 setTimeout(function(){ as_launch.show(); }, 2000);
@@ -30,6 +24,14 @@ var mac = /macintosh/i.test(navigator.userAgent.toLowerCase());
 var pc = /windows/i.test(navigator.userAgent.toLowerCase());
 if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'iPhone'; var ico = 'apl'; } else if (ipod) { var dev = 'iPod'; var ico = 'apl'; } else if (android) { var dev = 'Android'; var ico = 'dro'; } else if (mac) { var dev = 'Macbook'; var ico = 'apl'; } else if (pc) { var dev = 'PC Windows'; var ico = 'win'; } else { var dev = 'unknown'; var ico = 'unk';}
 
+// update device array
+$.ajax({
+	url: 'inc/_builder',
+	type: 'POST',
+	data: { action: 'device', type: dev, ico: ico },
+	success: function (rsp) {  }
+});
+
 // expand terms
 $('body').on('click', '#view_terms', function(e) {
 	$('.offcanvas').animate({height:'90%'}, 500);
@@ -54,21 +56,45 @@ $('body').on('click', '#ok', function(e) {
 
 // move to email screen
 $('body').on('click', '#name_submit', function(e) {
-	setTimeout(function(){ 
-		as_email.show(); 
-	}, 700);
+	var name = $('.guest_name').val();
+	$.ajax({
+		url: 'inc/_builder',
+		type: 'POST',
+		data: { action: 'guest', name: name, locale: locale },
+		success: function (rsp) {
+			setTimeout(function(){   
+				as_email.show();
+			}, 500);	 
+		}
+	});
 });	
 
 // move to opt-in screen
 $('body').on('click', '#email_submit', function(e) {
-	setTimeout(function(){ 
-		as_optin.show(); 
-	}, 700);
+	var email = $('.guest_email').val();
+	$.ajax({
+		url: 'inc/_builder',
+		type: 'POST',
+		data: { action: 'guest_email', email: email },
+		success: function (rsp) {
+			setTimeout(function(){   
+				as_optin.show();
+			}, 500);	 
+		}
+	});
 });	
 
 // move to connecting screen
 $('body').on('click', '#opt_in,#opt_out', function(e) {
-	setTimeout(function(){ 
-		as_connect.show(); 
-	}, 700);
+	if (this.id == 'opt_in') { var	subscribed = 1; } else { var subscribed = 0; }
+	$.ajax({
+		url: 'inc/_builder',
+		type: 'POST',
+		data: { action: 'guest_optin', subscribed: subscribed },
+		success: function (rsp) {
+			setTimeout(function(){   
+				as_connect.show(); 
+			}, 500);	 
+		}
+	});
 });	
