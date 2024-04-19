@@ -47,7 +47,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 	<link rel="stylesheet" href="https://cdn.menuflow.com/app/mnu/bootstrap.5.2.3.min.css">
 	<link rel="stylesheet" href="https://use.typekit.net/ngt4nfe.css">
-	<link rel="stylesheet" href="inc/_global.css">
+	<link rel="stylesheet" href="/inc/_global.css">
 	<style>
 	body { color: <?php echo $ui['css_canvas_txt_hex'];?>; background: <?php echo $ui['css_page_bg_hex'];?>; } 
 	.link { color: <?php echo $ui['css_canvas_link_hex'];?>; }
@@ -174,6 +174,6 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 <script src="https://cdn.menuflow.com/app/mnu/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.menuflow.com/app/mnu/bootstrap.bundle.5.2.3.min.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-<script src="inc/_global.js"></script>
+<script src="/inc/_global.js"></script>
 </body>
 </html>
