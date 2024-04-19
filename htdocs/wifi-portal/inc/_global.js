@@ -66,7 +66,7 @@ if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'i
 
 // update device array
 $.ajax({
-	url: 'inc/_builder',
+	url: '/inc/_builder',
 	type: 'POST',
 	data: { action: 'device', type: dev, ico: ico },
 	success: function (rsp) {  }
@@ -100,7 +100,7 @@ $('body').on('click', '#name_submit', function(e) {
 	// validate name is longer than 2 chars
 	if (name.length > 1) {
 		$.ajax({
-			url: 'inc/_builder',
+			url: '/inc/_builder',
 			type: 'POST',
 			data: { action: 'guest', name: name, locale: locale },
 			success: function (rsp) {
@@ -142,13 +142,13 @@ $('body').on('click', '#email_submit', function(e) {
 	if (validateEmail(email)) {
 		// check email DNS MX record
 		$.ajax({
-			url: 'inc/_dns_check',
+			url: '/inc/_dns_check',
 			type: 'POST',
 			data: { email: email },
 			success: function (rsp) {
 				if (rsp == 200) {
 					$.ajax({
-						url: 'inc/_builder',
+						url: '/inc/_builder',
 						type: 'POST',
 						data: { action: 'guest_email', email: email },
 						success: function (rsp) {
@@ -185,7 +185,7 @@ $('body').on('click', '#email_submit', function(e) {
 $('body').on('click', '#opt_in,#opt_out', function(e) {
 	if (this.id == 'opt_in') { var	subscribed = 1; } else { var subscribed = 0; }
 	$.ajax({
-		url: 'inc/_builder',
+		url: '/inc/_builder',
 		type: 'POST',
 		data: { action: 'guest_optin', subscribed: subscribed },
 		success: function (rsp) {
