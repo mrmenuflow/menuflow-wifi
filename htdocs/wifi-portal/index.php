@@ -16,11 +16,19 @@ $path = array_filter($path);
 $vendor_id = $path[3];
 $mac_wap = $_GET['ap'];
 $mac_usr = $_GET['id'];
+$connected_at = date('Y-m-d H:i:s');
 
-//$vendor_id = 'oqqxft2t';
-//$mac_wap = 'e0:63:da:26:4a:ff';
-//$mac_usr = '78:76:89:17:7c:32';
-//$connected_at = date('Y-m-d H:i:s');
+// unifi dataset
+if ($vendor_id != '') {
+	$vendor_id = $path[3];
+	$mac_wap = $_GET['ap'];
+	$mac_usr = $_GET['id'];
+}
+else {
+	$vendor_id = 'oqqxft2t';
+	$mac_wap = 'e0:63:da:26:4a:ff';
+	$mac_usr = '78:76:89:17:7c:32';	
+}
 
 // do api call
 $rsp = call_api('GET', '/wifi/'.$vendor_id);  
@@ -54,6 +62,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 </head>
 <body>
 <div class="launch-screen">
+	<?php echo $_SERVER['REQUEST_URI'].'<hr>';?>
 	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
