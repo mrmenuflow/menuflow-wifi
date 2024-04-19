@@ -17,19 +17,18 @@ $vendor_id = $path[3];
 $mac_wap = $_GET['ap'];
 $mac_usr = $_GET['id'];
 
-$vendor_id = 'oqqxft2t';
-$mac_wap = 'e0:63:da:26:4a:ff';
-$mac_usr = '78:76:89:17:7c:32';
-$connected_at = date('Y-m-d H:i:s');
+//$vendor_id = 'oqqxft2t';
+//$mac_wap = 'e0:63:da:26:4a:ff';
+//$mac_usr = '78:76:89:17:7c:32';
+//$connected_at = date('Y-m-d H:i:s');
 
 // do api call
 $rsp = call_api('GET', '/wifi/'.$vendor_id);  
 $ui = $rsp['result'][0];
 
 // build profile array
-//if (!isset($_SESSION['profile'])) {
-	$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'connected_at' => $connected_at), 'ap' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
-//}
+$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'connected_at' => $connected_at), 'ap' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
+
 ?>
 <html>
 <head>
@@ -87,13 +86,13 @@ $ui = $rsp['result'][0];
 			<div class="w-100 p-2 pb-0">
 				<h2><?php echo $ui['txt_name_title'];?></h2>
 				<p class="mt-1"><?php echo $ui['txt_name_intro'];?></p>
-			</div>	
+			</div>
 		</div>
 		<div class="offcanvas-footer p-3 pt-0 pb-4">
 			<input class="guest_name" type="text" name="guest_name" placeholder="<?php echo $ui['txt_name_ph'];?>">
-			<div class="btn btn-lg master-button" data-bs-dismiss="offcanvas" aria-label="Close" id="name_submit" style="margin-top:-7px;">
+			<div class="btn btn-lg master-button" id="name_submit" style="margin-top:-7px;">
 				<?php echo $ui['txt_name_btn'];?>
-			</div>  
+			</div>
 		</div>
 	</div>
 </div>
@@ -108,7 +107,7 @@ $ui = $rsp['result'][0];
 		</div>
 		<div class="offcanvas-footer p-3 pt-0 pb-4">
 			<input class="guest_email" type="email" name="guest_email" placeholder="<?php echo $ui['txt_email_ph'];?>">
-			<div class="btn btn-lg master-button" data-bs-dismiss="offcanvas" aria-label="Close" id="email_submit" style="margin-top:-7px;">
+			<div class="btn btn-lg master-button" id="email_submit" style="margin-top:-7px;">
 				<?php echo $ui['txt_email_btn'];?>
 			</div>  
 		</div>

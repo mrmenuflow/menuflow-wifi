@@ -1,3 +1,31 @@
+jQuery.fn.shake = function(intShakes, intDistance, intDuration) {  
+	intShakes = intShakes || 5;
+	intDistance = intDistance || 2;
+	intDuration = intDuration || 1000;
+	this.each(function() {
+		$(this).css("position","relative"); 
+		for (var x=1; x<=intShakes; x++) {
+			$(this).animate({left:(intDistance*-1)}, (((intDuration/intShakes)/4)))
+			.animate({left:intDistance}, ((intDuration/intShakes)/2))
+			.animate({left:0}, (((intDuration/intShakes)/4)));
+		}
+	});
+	return this;
+};
+
+// function to change button icon
+function changeButton(target, state) {
+	if (state == 'clicked') {
+		$(target).html('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon" style="width:30px;margin-top:-5px;"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg>');
+	}
+	else if (state == 'success') {
+		$(target).html('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="icon" style="width:19px;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>');
+	}
+	else if (state == 'stop') {
+		$(target).html('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon" style="width:19px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 1 0-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 0 1 3.15 0v1.5m-3.15 0 .075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 0 1 3.15 0V15M6.9 7.575a1.575 1.575 0 1 0-3.15 0v8.175a6.75 6.75 0 0 0 6.75 6.75h2.018a5.25 5.25 0 0 0 3.712-1.538l1.732-1.732a5.25 5.25 0 0 0 1.538-3.712l.003-2.024a.668.668 0 0 1 .198-.471 1.575 1.575 0 1 0-2.228-2.228 3.818 3.818 0 0 0-1.12 2.687M6.9 7.575V12m6.27 4.318A4.49 4.49 0 0 1 16.35 15m.002 0h-.002" /></svg>');
+	}
+}   
+
 // screen rotate 
 window.addEventListener("orientationchange", function() {
 	if ( window.orientation == 90 || window.orientation == -90 ) {
@@ -69,31 +97,88 @@ $('body').on('click', '#ok', function(e) {
 // move to email screen
 $('body').on('click', '#name_submit', function(e) {
 	var name = $('.guest_name').val();
-	$.ajax({
-		url: 'inc/_builder',
-		type: 'POST',
-		data: { action: 'guest', name: name, locale: locale },
-		success: function (rsp) {
-			setTimeout(function(){   
-				as_email.show();
-			}, 500);	 
-		}
-	});
+	// validate name is longer than 2 chars
+	if (name.length > 1) {
+		$.ajax({
+			url: 'inc/_builder',
+			type: 'POST',
+			data: { action: 'guest', name: name, locale: locale },
+			success: function (rsp) {
+				changeButton('#name_submit', 'success');
+				setTimeout(function(){   
+					as_guest.hide();
+				}, 500);		
+				setTimeout(function(){   
+					as_email.show();
+				}, 1200);									 
+			}
+		});
+	}
+	else {
+		// error check shake button
+		$(this).shake();
+	}
 });	
+
+function validateEmail(email) {
+	var regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+	if (!regex.test(email)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
 
 // move to opt-in screen
 $('body').on('click', '#email_submit', function(e) {
 	var email = $('.guest_email').val();
-	$.ajax({
-		url: 'inc/_builder',
-		type: 'POST',
-		data: { action: 'guest_email', email: email },
-		success: function (rsp) {
-			setTimeout(function(){   
-				as_optin.show();
-			}, 500);	 
-		}
-	});
+	var btn_txt = $('#email_submit').text();
+	
+	// change button state
+	changeButton(this, 'clicked');
+	
+	// validate name is longer than 2 chars
+	if (validateEmail(email)) {
+		// check email DNS MX record
+		$.ajax({
+			url: 'inc/_dns_check',
+			type: 'POST',
+			data: { email: email },
+			success: function (rsp) {
+				if (rsp == 200) {
+					$.ajax({
+						url: 'inc/_builder',
+						type: 'POST',
+						data: { action: 'guest_email', email: email },
+						success: function (rsp) {
+							// change button state
+							changeButton('#email_submit', 'success');
+							// transition screens
+							setTimeout(function(){   
+								as_email.hide();
+							}, 500);		
+							setTimeout(function(){   
+								as_optin.show();
+							}, 1200);									 
+						}
+					});
+				}	
+				else {
+					// error check shake button
+					changeButton('#email_submit', 'stop');
+					setTimeout(function(){   
+						$('.guest_email').val('');
+						$('#email_submit').html(btn_txt);
+					}, 1200);		
+				}
+			}
+		});
+	}
+	else {
+		// error check shake button
+		$(this).shake();
+	}
 });	
 
 // move to connecting screen
@@ -107,6 +192,7 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 			setTimeout(function(){   
 				as_connect.show(); 
 			}, 500);	 
+			alert(rsp)
 		}
 	});
 });	

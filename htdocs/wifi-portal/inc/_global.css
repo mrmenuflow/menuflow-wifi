@@ -2,6 +2,10 @@
 	outline:none!important;
 	box-shadow: none!important;
 }
+input:-webkit-autofill, input:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0 1000px #f1e8e4 inset!important;
+	-webkit-text-fill-color: #746A60!important;
+}
 body {
 	height: 100%;
 	font-family: "ltc-caslon-pro", serif;
@@ -49,6 +53,7 @@ p {
 	color: #FFF;
 	line-height: 13px;
 	height: 52px;
+	min-width: 105px;
 	max-height: 52px;
 	padding: 1rem 1rem;
 	border-radius: 7.5px;
