@@ -9,7 +9,8 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
 // check if device repeat visitor
 if ($_POST['action'] == 'check_device') {
 	// do api call
-	$rsp = call_api('GET', '/wifi/'.$_SESSION['profile']['device']['mac'],'/device', $data);  
+	$data = json_encode(array('mac_addr' => $_SESSION['profile']['device']['mac']));
+	$rsp = call_api('GET', '/wifi/'.$_SESSION['profile']['venu']['location_id'],'/device', $data);  
 	print_r($rsp);
 }
 // process device
