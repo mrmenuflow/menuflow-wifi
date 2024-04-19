@@ -6,8 +6,14 @@ session_start();
 // include api proxy
 include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
 
+// check if device repeat visitor
+if ($_POST['action'] == 'check_device') {
+	// do api call
+	$rsp = call_api('GET', '/wifi/'.$_SESSION['profile']['device']['mac'],'/device', $data);  
+	print_r($rsp);
+}
 // process device
-if ($_POST['action'] == 'device') {
+else if ($_POST['action'] == 'device') {
 	$_SESSION['profile']['device']['type'] = $_POST['type'];
 	$_SESSION['profile']['device']['ico']  = $_POST['ico'];
 }

@@ -64,6 +64,17 @@ var mac = /macintosh/i.test(navigator.userAgent.toLowerCase());
 var pc = /windows/i.test(navigator.userAgent.toLowerCase());
 if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'iPhone'; var ico = 'apl'; } else if (ipod) { var dev = 'iPod'; var ico = 'apl'; } else if (android) { var dev = 'Android'; var ico = 'dro'; } else if (mac) { var dev = 'Macbook'; var ico = 'apl'; } else if (pc) { var dev = 'PC Windows'; var ico = 'win'; } else { var dev = 'unknown'; var ico = 'unk';}
 
+// check device for repeat visit 
+$.ajax({
+	url: '/inc/_builder',
+	type: 'POST',
+	data: { action: 'check_device' },
+	success: function (rsp) {  
+		alert(rsp);
+	}
+});
+
+
 // update device array
 $.ajax({
 	url: '/inc/_builder',
