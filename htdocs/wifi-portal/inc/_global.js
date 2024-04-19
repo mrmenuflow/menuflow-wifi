@@ -40,7 +40,6 @@ window.addEventListener("orientationchange", function() {
 
 // launch transitions
 $('.launch-screen').fadeIn(1850);
-setTimeout(function(){ as_launch.show(); }, 2000);
 
 // action sheet 
 var as_launch  = new bootstrap.Offcanvas('#privacy');
@@ -48,6 +47,8 @@ var as_guest 	 = new bootstrap.Offcanvas('#guest_name');
 var as_email 	 = new bootstrap.Offcanvas('#guest_email');
 var as_optin 	 = new bootstrap.Offcanvas('#guest_optin');
 var as_connect = new bootstrap.Offcanvas('#guest_connect');
+var as_return  = new bootstrap.Offcanvas('#guest_return');
+var as_return_optin = new bootstrap.Offcanvas('#guest_return_optin');
 
 // browser lang
 var userLang = navigator.language || navigator.userLanguage;
@@ -68,19 +69,28 @@ if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'i
 $.ajax({
 	url: '/inc/_builder',
 	type: 'POST',
-	data: { action: 'check_device' },
+	data: { action: 'check_device', locale: locale, type: dev, ico: ico },
 	success: function (rsp) {  
-		alert(rsp);
+		data = JSON.parse(rsp);
+		crm_id = data.guest.crm_id;
+		crm_name = data.guest.name;
+		crm_optin = data.guest.subscribed;
+		
+		// workout start screen to show
+		if (crm_id > 0) {
+			if (crm_optin == 1) {
+				$('#guest_return_optin #user').text(crm_name);
+				setTimeout(function(){ as_return_optin.show(); }, 500);
+			}
+			else {
+				$('#guest_return #user').text(crm_name);
+				setTimeout(function(){ as_return.show(); }, 500);
+			}
+		}
+		else {
+			setTimeout(function(){ as_launch.show(); }, 500);
+		}
 	}
-});
-
-
-// update device array
-$.ajax({
-	url: '/inc/_builder',
-	type: 'POST',
-	data: { action: 'device', type: dev, ico: ico },
-	success: function (rsp) {  }
 });
 
 // expand terms

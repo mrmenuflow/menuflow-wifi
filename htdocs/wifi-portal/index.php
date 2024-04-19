@@ -23,8 +23,7 @@ $rsp = call_api('GET', '/wifi/'.$vendor_id);
 $ui = $rsp['result'][0];
 
 // build profile array
-$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'connected_at' => $connected_at), 'ap' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
-
+$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'connected_at' => $connected_at), 'ap' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('crm_id' => 0, 'name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
 ?>
 <html>
 <head>
@@ -141,6 +140,41 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 					<span class="visually-hidden">Loading...</span>
 				</div>
 			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="return-screen">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_return" aria-labelledby="offcanvasBottomLabel">
+		<div class="offcanvas-body">
+			<div class="w-100 p-2 pb-0 text-center mt-5">
+				<h2>
+					Welcome back <span id="user"></span><br>
+					<span class="connecting"><?php echo $ui['txt_connect_intro'];?></span>
+				</h2>
+				<div class="spinner-border mt-2" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="return-optin-screen">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_return_optin" aria-labelledby="offcanvasBottomLabel">
+		<div class="offcanvas-body">
+			<div class="w-100 p-2 pb-0">
+				<h2>Nice to see you, <span id="user"></span></h2>
+				<span class="connecting">Choose an option below to connect to the internet.</span>
+			</div>	
+		</div>
+		<div class="offcanvas-footer p-3 pt-0 pb-4">
+			<div class="btn btn-lg master-button mt-3" data-bs-dismiss="offcanvas" aria-label="Close" id="opt_in" style="width:48%;">
+				Join the VIP list
+			</div>  
+			<div class="btn btn-lg master-button mt-3" data-bs-dismiss="offcanvas" aria-label="Close" id="opt_out" style="margin-left:10px;width:48%;">
+				No thanks, connect
+			</div>  
 		</div>
 	</div>
 </div>
