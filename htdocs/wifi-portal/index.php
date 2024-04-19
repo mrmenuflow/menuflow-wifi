@@ -52,7 +52,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 	body { color: <?php echo $ui['css_canvas_txt_hex'];?>; background: <?php echo $ui['css_page_bg_hex'];?>; } 
 	.link { color: <?php echo $ui['css_canvas_link_hex'];?>; }
 	.link:hover { color: <?php echo $ui['css_canvas_link_hover_hex'];?>; }
-	.launch-screen { color: <?php echo $ui['css_canvas_txt_hex'];?>; background: url('inc/<?php echo $ui['css_page_bg_img'];?>') center center; background-repeat: no-repeat; background-size: cover; }
+	.launch-screen { color: <?php echo $ui['css_canvas_txt_hex'];?>; background: url('/inc/<?php echo $ui['css_page_bg_img'];?>') center center; background-repeat: no-repeat; background-size: cover; }
 	.master-button { border-color: <?php echo $ui['css_canvas_btn_hex'];?>; background: <?php echo $ui['css_canvas_btn_hex'];?>; }
 	.master-button:hover { border-color: <?php echo $ui['css_canvas_btn_hover_hex'];?>; background: <?php echo $ui['css_canvas_btn_hover_hex'];?>; }
 	h2 { color: <?php echo $ui['css_canvas_title_hex'];?>; } 
