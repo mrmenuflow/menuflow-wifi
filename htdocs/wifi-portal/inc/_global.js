@@ -1,4 +1,16 @@
-// transitions
+// screen rotate 
+window.addEventListener("orientationchange", function() {
+	if ( window.orientation == 90 || window.orientation == -90 ) {
+		$('#rotate').removeClass('d-none');
+		$('.launch-screen').addClass('d-none');
+	}
+	else {
+		$('#rotate').addClass('d-none');
+		$('.launch-screen').removeClass('d-none');
+	}
+}, false);
+
+// launch transitions
 $('.launch-screen').fadeIn(1850);
 setTimeout(function(){ as_launch.show(); }, 2000);
 

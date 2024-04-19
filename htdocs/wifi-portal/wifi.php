@@ -167,17 +167,5 @@ $ui = $rsp['result'][0];
 <script src="https://cdn.menuflow.com/app/mnu/bootstrap.bundle.5.2.3.min.js"></script>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script src="inc/_global.js"></script>
-<script>
-window.addEventListener("orientationchange", function() {
-	if ( window.orientation == 90 || window.orientation == -90 ) {
-		$('#rotate').removeClass('d-none');
-		$('.launch-screen').addClass('d-none');
-	}
-	else {
-		$('#rotate').addClass('d-none');
-		$('.launch-screen').removeClass('d-none');
-	}
-}, false);
-</script>
 </body>
 </html>
