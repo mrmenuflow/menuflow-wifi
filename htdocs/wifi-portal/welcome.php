@@ -12,22 +12,10 @@ $dir = $parsedUrl['path'];
 $path = explode('/',  $dir);
 $path = array_filter($path);
 
-echo $parsedUrl.'<hr>';
-print_r($_GET);
-
 // unifi dataset
 $vendor_id = $path[3];
 $mac_wap = $_GET['ap'];
 $mac_usr = $_GET['id'];
-
-echo '<pre>';
-
-echo $vendor_id;
-echo $mac_wap;
-echo $mac_usr;
-
-exit;
-
 
 //$vendor_id = 'oqqxft2t';
 //$mac_wap = 'e0:63:da:26:4a:ff';
