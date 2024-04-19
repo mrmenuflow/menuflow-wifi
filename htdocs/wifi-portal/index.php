@@ -19,16 +19,9 @@ $mac_usr = $_GET['id'];
 $connected_at = date('Y-m-d H:i:s');
 
 // unifi dataset
-if ($vendor_id != '') {
-	$vendor_id = $path[3];
-	$mac_wap = $_GET['ap'];
-	$mac_usr = $_GET['id'];
-}
-else {
-	$vendor_id = 'oqqxft2t';
-	$mac_wap = 'e0:63:da:26:4a:ff';
-	$mac_usr = '78:76:89:17:7c:32';	
-}
+$vendor_id = $path[3];
+$mac_wap = $_GET['ap'];
+$mac_usr = $_GET['id'];
 
 // do api call
 $rsp = call_api('GET', '/wifi/'.$vendor_id);  
