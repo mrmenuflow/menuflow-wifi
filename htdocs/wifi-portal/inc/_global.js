@@ -99,6 +99,16 @@ $.ajax({
 					data: { action: 'guest_crm' },
 					success: function (rsp) { }
 				});
+				
+				// do guest auth
+				$.ajax({
+					url: '/inc/_do_auth',
+					type: 'POST',
+					data: { action: 'auth_guest' },
+					success: function (rsp) { 
+						alert(rsp)
+					}
+				});
 			}
 		}
 		else {
@@ -237,6 +247,14 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 				});
 				
 				// do guest auth
+				$.ajax({
+					url: '/inc/_do_auth',
+					type: 'POST',
+					data: { action: 'auth_guest' },
+					success: function (rsp) { 
+						alert(rsp)
+					}
+				});
 				
 			}, 500);	 		
 		}
