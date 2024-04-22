@@ -3,37 +3,25 @@
 // start session management 
 session_start();
 
-// include api proxy
-include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
-
 // ubiquiti unifi cloud controller authentication
 if ($_SESSION['profile']['wifi']['vendor'] == 'ubnt') {
-	
-	// include unifi class
-	require_once('unifi.class.php');
+		
+	// include unifi
+	require_once 'vendor/autoload.php';
 	
 	// controller settings
-	$controllerurl      = $_SESSION['profile']['wifi']['auth_url'];
-	$controlleruser     = $_SESSION['profile']['wifi']['auth_usr'];
-	$controllerpassword = $_SESSION['profile']['wifi']['auth_psw'];
-	$controllerversion  = '8.1.113';
-	$debug = false;
+	$controller_url = $_SESSION['profile']['wifi']['auth_url'];
+	$controller_usr = $_SESSION['profile']['wifi']['auth_usr'];
+	$controller_psw = $_SESSION['profile']['wifi']['auth_psw'];
+	$site_id = $_SESSION['profile']['wifi']['vendor_id'];
+	$duration = 2000; // mins to allow
+	$controller_ver = '8.1.113';
 	
-	// make connection to unifi controller
-	$unifi_connection = new UniFi_API\Client($controlleruser, $controllerpassword, $controllerurl, $_SESSION['profile']['wifi']['vendor_id'], $controllerversion);
-	$set_debug_mode   = $unifi_connection->set_debug(true);
-	$loginresults     = $unifi_connection->login();
-	$duration = 180;
+	$unifi_connection = new UniFi_API\Client($controller_usr, $controller_psw, $controller_url, $site_id, $controller_ver, false);
+	$set_debug_mode = $unifi_connection->set_debug(false);
+	$loginresults   = $unifi_connection->login();
+	$auth_result = $unifi_connection->authorize_guest($_SESSION['profile']['device']['mac'], $duration, 200000, 200000, null, $_SESSION['profile']['wifi']['ap_mac']);
 	
-	// authenticate guest device 
-	$auth_result = $unifi_connection->authorize_guest($_SESSION['profile']['device']['mac'], $duration, '200000', '200000', '', $_SESSION['profile']['wifi']['ap_mac']);
+	echo json_encode($auth_result, JSON_PRETTY_PRINT);
 }
 	
-echo 'AP MAC: '.$_SESSION['profile']['wifi']['ap_mac'].'<hr>';
-echo 'USER MAC: '.$_SESSION['profile']['device']['mac'].'<hr>';
-
-var_dump($auth_result);
-echo $loginresults;
-echo json_encode($auth_result, JSON_PRETTY_PRINT).'<hr>';	
-$errors = get_last_results_raw();
-var_dump($errors);
