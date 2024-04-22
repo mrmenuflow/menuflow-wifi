@@ -107,7 +107,7 @@ $.ajax({
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
 						if (rsp == 'true') {
-							window.location.replace("https://google.com");
+							window.location.replace("http://menuflow.com");
 						}
 					}
 				});
@@ -254,7 +254,9 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 					type: 'POST',
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
-						alert(rsp)
+						if (rsp == 'true') {
+							window.location.replace("http://menuflow.com");
+						}
 					}
 				});
 				
