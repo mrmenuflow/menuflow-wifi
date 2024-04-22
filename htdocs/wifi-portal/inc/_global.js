@@ -73,9 +73,9 @@ $.ajax({
 	success: function (rsp) {  
 		data = JSON.parse(rsp);
 		crm_id = data.guest.crm_id;
-		crm_name = data.guest.name.split(' ');
 		crm_optin = data.guest.subscribed;
-
+		crm_name = (data.guest.name?.split(' ')[0]) || '';
+		
 		// workout start screen to show
 		if (crm_id > 0) {
 			if (crm_optin == 0) {
