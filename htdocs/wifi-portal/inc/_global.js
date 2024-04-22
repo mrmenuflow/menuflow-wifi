@@ -106,7 +106,7 @@ $.ajax({
 					type: 'POST',
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
-						alert(rsp)
+						window.location.replace("http://google.com");
 					}
 				});
 			}
