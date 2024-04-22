@@ -19,11 +19,11 @@ $mac_usr = $_GET['id'];
 $connected_at = date('Y-m-d H:i:s');
 
 // do api call
-$rsp = call_api('GET', '/wifi/'.$vendor_id);  
+$rsp = call_api('GET', '/wifi/'.$vendor_id.'/vendor');  
 $ui = $rsp['result'][0];
 
 // build profile array
-$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'connected_at' => $connected_at), 'ap' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('crm_id' => 0, 'name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
+$_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'], 'location_id'	=> $ui['location_id'], 'location_name' => $ui['location_name'], 'connected_at' => $connected_at), 'wifi' => array('vendor' => $ui['vendor'], 'vendor_id' => $vendor_id, 'ap_mac' => $mac_wap, 'auth_url' => $ui['auth_url'], 'auth_usr' => $ui['auth_usr'], 'auth_psw' => $ui['auth_psw']), 'device' => array('device_id' => 0, 'mac' => $mac_usr, 'type' => '', 'ico' => ''), 'guest' => array('crm_id' => 0, 'name' => '', 'email' => '', 'locale' => '', 'dob_day' => '', 'dob_mth' => '', 'zip' => '', 'subscribed' => 0));
 ?>
 <html>
 <head>

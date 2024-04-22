@@ -11,18 +11,25 @@ if ($_POST['action'] == 'check_device') {
 	// do api call
 	$data = json_encode(array('mac_addr' => $_SESSION['profile']['device']['mac']));
 	$rsp2 = call_api('GET', '/wifi/'.$_SESSION['profile']['venue']['location_id'].'/device', $data);  
-	
+		
 	// set crm_id to zero if not found
-	if ($rsp2['result'][0]['crm_id'] == '') { $rsp2['result'][0]['crm_id'] = 0; }
+	if ($rsp2['result'][0]['crm_id'] == '') { 
+		$rsp2['result'][0]['crm_id'] = 0;   
+	} 
+	// device mac already exists 
+	if ($rsp2['result'][0]['id'] == '') { 
+		$rsp2['result'][0]['id'] = 0;  
+	}
 	
 	// update profile
 	$_SESSION['profile']['guest']['crm_id'] = $rsp2['result'][0]['crm_id'];
 	$_SESSION['profile']['guest']['locale'] = $_POST['locale'];
-	$_SESSION['profile']['guest']['name']   = $rsp2['result'][0]['name'];
-	$_SESSION['profile']['guest']['email']  = $rsp2['result'][0]['email'];
+	$_SESSION['profile']['guest']['name'] = $rsp2['result'][0]['name'];
+	$_SESSION['profile']['guest']['email'] = $rsp2['result'][0]['email'];
 	$_SESSION['profile']['guest']['subscribed'] = $rsp2['result'][0]['subscribed'];
-	$_SESSION['profile']['device']['type']  = $_POST['type'];
-	$_SESSION['profile']['device']['ico']   = $_POST['ico'];
+	$_SESSION['profile']['device']['type'] = $_POST['type'];
+	$_SESSION['profile']['device']['ico'] = $_POST['ico'];
+	$_SESSION['profile']['device']['device_id'] = $rsp2['result'][0]['id'];
 }
 // process guest
 else if ($_POST['action'] == 'guest') {

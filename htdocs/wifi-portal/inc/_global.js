@@ -42,12 +42,12 @@ window.addEventListener("orientationchange", function() {
 $('.launch-screen').fadeIn(1850);
 
 // action sheet 
-var as_launch  = new bootstrap.Offcanvas('#privacy');
-var as_guest 	 = new bootstrap.Offcanvas('#guest_name');
-var as_email 	 = new bootstrap.Offcanvas('#guest_email');
-var as_optin 	 = new bootstrap.Offcanvas('#guest_optin');
+var as_launch = new bootstrap.Offcanvas('#privacy');
+var as_guest = new bootstrap.Offcanvas('#guest_name');
+var as_email = new bootstrap.Offcanvas('#guest_email');
+var as_optin = new bootstrap.Offcanvas('#guest_optin');
 var as_connect = new bootstrap.Offcanvas('#guest_connect');
-var as_return  = new bootstrap.Offcanvas('#guest_return');
+var as_return = new bootstrap.Offcanvas('#guest_return');
 var as_return_optin = new bootstrap.Offcanvas('#guest_return_optin');
 
 // browser lang
@@ -73,18 +73,32 @@ $.ajax({
 	success: function (rsp) {  
 		data = JSON.parse(rsp);
 		crm_id = data.guest.crm_id;
-		crm_name = data.guest.name;
+		crm_name = data.guest.name.split(' ');
 		crm_optin = data.guest.subscribed;
-		
+
 		// workout start screen to show
 		if (crm_id > 0) {
 			if (crm_optin == 0) {
-				$('#guest_return_optin #user').text(crm_name);
-				setTimeout(function(){ as_return_optin.show(); }, 500);
+				// personalize screen 
+				$('#guest_return_optin #user').text(crm_name[0]);
+				
+				// show return connecting with optin screen
+				setTimeout(function(){ as_return_optin.show(); }, 500);		
 			}
 			else {
-				$('#guest_return #user').text(crm_name);
+				// personalize screen 
+				$('#guest_return #user').text(crm_name[0]);
+				
+				// show return connecting screen
 				setTimeout(function(){ as_return.show(); }, 500);
+			
+				// crm update		
+				$.ajax({
+					url: '/inc/_do_crm_update',
+					type: 'POST',
+					data: { action: 'guest_crm' },
+					success: function (rsp) { }
+				});
 			}
 		}
 		else {
@@ -210,10 +224,21 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 		type: 'POST',
 		data: { action: 'guest_optin', subscribed: subscribed },
 		success: function (rsp) {
-			setTimeout(function(){   
-				as_connect.show(); 
-			}, 500);	 
-			alert(rsp)
+			setTimeout(function(){
+				// show connecting screen   
+				as_connect.show();
+				
+				// crm update		
+				$.ajax({
+					url: '/inc/_do_crm_update',
+					type: 'POST',
+					data: { action: 'guest_crm' },
+					success: function (rsp) { }
+				});
+				
+				// do guest auth
+				
+			}, 500);	 		
 		}
 	});
 });	
