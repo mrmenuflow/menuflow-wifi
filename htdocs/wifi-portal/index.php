@@ -149,7 +149,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0 text-center mt-5">
 				<h2>
-					Welcome back <span id="user"></span><br>
+					Welcome back, <span id="user"></span><br>
 					<span class="connecting"><?php echo $ui['txt_connect_intro'];?></span>
 				</h2>
 				<div class="spinner-border mt-2" role="status">
@@ -165,7 +165,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
 				<h2>Nice to see you, <span id="user"></span></h2>
-				<span class="connecting">Choose an option below to connect to the internet.</span>
+				<p>Welcome back, please choose an option below to connect to the internet.</p>
 			</div>	
 		</div>
 		<div class="offcanvas-footer p-3 pt-0 pb-4">
@@ -173,7 +173,7 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 				Join the VIP list
 			</div>  
 			<div class="btn btn-lg master-button mt-3" data-bs-dismiss="offcanvas" aria-label="Close" id="opt_out" style="margin-left:10px;width:48%;">
-				No thanks, connect
+				just connect
 			</div>  
 		</div>
 	</div>

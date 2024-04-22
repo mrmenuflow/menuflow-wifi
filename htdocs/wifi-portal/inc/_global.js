@@ -78,7 +78,7 @@ $.ajax({
 		
 		// workout start screen to show
 		if (crm_id > 0) {
-			if (crm_optin == 1) {
+			if (crm_optin == 0) {
 				$('#guest_return_optin #user').text(crm_name);
 				setTimeout(function(){ as_return_optin.show(); }, 500);
 			}
