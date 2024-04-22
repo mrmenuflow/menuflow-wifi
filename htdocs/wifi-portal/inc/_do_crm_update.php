@@ -43,7 +43,7 @@ if ($_SESSION['profile']['guest']['crm_id'] == 0) {
 			$api_crm_profile = call_api('POST', '/wifi/'.$crm_id.'/profile', $data_profile); 
 			
 			// add device
-			$data_device = json_encode(array('location_id' => $_SESSION['profile']['venue']['location_id'],'mac_address' => $_SESSION['profile']['device']['mac'],'device_type' => $_SESSION['profile']['device']['type'],'icon' => $_SESSION['profile']['device']['apl']));
+			$data_device = json_encode(array('location_id' => $_SESSION['profile']['venue']['location_id'],'mac_address' => $_SESSION['profile']['device']['mac'],'device_type' => $_SESSION['profile']['device']['type'],'icon' => $_SESSION['profile']['device']['ico']));
 			$api_crm_device = call_api('POST', '/wifi/'.$crm_id.'/device', $data_device); 
 			
 			// add visit
