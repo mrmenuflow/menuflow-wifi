@@ -6,6 +6,17 @@ session_start();
 // include api proxy
 include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_proxy.php');
 
+// include pusher php sdk
+include_once $_SERVER['DOCUMENT_ROOT'].'/inc/Pusher/autoload.php';
+
+// setup push api
+$options = array(
+	'cluster' => 'mt1','useTLS' => true
+);
+$pusher = new Pusher\Pusher(
+	'eb15de95aa36b7912593','4ae166c1ffae74c7b775','1792454', $options
+);
+
 // check if device repeat visitor
 if ($_POST['action'] == 'check_device') {
 	// do api call
@@ -30,6 +41,10 @@ if ($_POST['action'] == 'check_device') {
 	$_SESSION['profile']['device']['type'] = $_POST['type'];
 	$_SESSION['profile']['device']['ico'] = $_POST['ico'];
 	$_SESSION['profile']['device']['device_id'] = $rsp2['result'][0]['id'];
+	
+	// send message to pusher
+	$channel_id = 'WIFI-'.$_SESSION['profile']['venue']['location_id'];
+	$pusher->trigger($channel_id, 'connect', $_SESSION['profile']['device']);
 }
 // process guest
 else if ($_POST['action'] == 'guest') {

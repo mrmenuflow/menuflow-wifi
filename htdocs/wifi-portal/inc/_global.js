@@ -1,3 +1,4 @@
+// shake animation plugin
 jQuery.fn.shake = function(intShakes, intDistance, intDuration) {  
 	intShakes = intShakes || 5;
 	intDistance = intDistance || 2;
@@ -72,6 +73,7 @@ $.ajax({
 	data: { action: 'check_device', locale: locale, type: dev, ico: ico },
 	success: function (rsp) {  
 		data = JSON.parse(rsp);
+		
 		crm_id = data.guest.crm_id;
 		crm_optin = data.guest.subscribed;
 		crm_name = (data.guest.name?.split(' ')[0]) || '';
