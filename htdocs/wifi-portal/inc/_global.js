@@ -110,7 +110,13 @@ $.ajax({
 					success: function (rsp) { 
 						if (rsp == 'true') {
 							setTimeout(function(){
-								window.location.replace("http://menuflow.com");
+								window.location.replace("http://menuflow.com");								
+								$.ajax({
+									url: '/inc/_builder',
+									type: 'POST',
+									data: { action: 'authed' },
+									success: function (rsp) { }
+								});
 							}, 1500);	
 						}
 					}
@@ -261,6 +267,12 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 						if (rsp == 'true') {
 							setTimeout(function(){
 								window.location.replace("http://menuflow.com");
+								$.ajax({
+									url: '/inc/_builder',
+									type: 'POST',
+									data: { action: 'authed' },
+									success: function (rsp) { }
+								});
 							}, 1500);	
 						}
 					}

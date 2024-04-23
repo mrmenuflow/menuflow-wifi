@@ -49,16 +49,39 @@ if ($_POST['action'] == 'check_device') {
 // process guest
 else if ($_POST['action'] == 'guest') {
 	$_SESSION['profile']['guest']['name'] = $_POST['name'];
-	$_SESSION['profile']['guest']['locale'] = $_POST['locale'];
+	
+	// send message to pusher
+	$channel_id = 'WIFI-'.$_SESSION['profile']['venue']['location_id'];
+	$data = array('mac' => $_SESSION['profile']['device']['mac'], 'type' => $_SESSION['profile']['device']['type'], 'name' => $_POST['name']);
+	$pusher->trigger($channel_id, 'name', $data);
 }
 // process guest email
 else if ($_POST['action'] == 'guest_email') {
 	$_SESSION['profile']['guest']['email'] = $_POST['email'];
+	
+	// send message to pusher
+	$channel_id = 'WIFI-'.$_SESSION['profile']['venue']['location_id'];
+	$data = array('mac' => $_SESSION['profile']['device']['mac'], 'type' => $_SESSION['profile']['device']['type'], 'name' => $_SESSION['profile']['guest']['name'], 'email' => $_POST['email']);
+	$pusher->trigger($channel_id, 'email', $data);
 }
 // process guest opt-in
 else if ($_POST['action'] == 'guest_optin') {
 	$_SESSION['profile']['guest']['subscribed'] = $_POST['subscribed'];
+	
+	// send message to pusher
+	$channel_id = 'WIFI-'.$_SESSION['profile']['venue']['location_id'];
+	$data = array('mac' => $_SESSION['profile']['device']['mac'], 'type' => $_SESSION['profile']['device']['type'], 'name' => $_SESSION['profile']['guest']['name'], 'email' => $_SESSION['profile']['guest']['email'], 'subscribed' => $_POST['subscribed']);
+	$pusher->trigger($channel_id, 'optin', $data);
 }
+
+// process guest authed
+else if ($_POST['action'] == 'authed') {	
+	// send message to pusher
+	$channel_id = 'WIFI-'.$_SESSION['profile']['venue']['location_id'];
+	$data = array('mac' => $_SESSION['profile']['device']['mac'], 'type' => $_SESSION['profile']['device']['type'], 'name' => $_SESSION['profile']['guest']['name'], 'email' => $_SESSION['profile']['guest']['email'], 'subscribed' => $_SESSION['profile']['guest']['subscribed']);
+	$pusher->trigger($channel_id, 'authed', $data);
+}
+
 
 $json = json_encode($_SESSION['profile'], JSON_PRETTY_PRINT);
 echo $json;	
