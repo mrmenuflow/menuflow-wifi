@@ -107,7 +107,9 @@ $.ajax({
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
 						if (rsp == 'true') {
-							window.location.replace("http://menuflow.com");
+							setTimeout(function(){
+								window.location.replace("http://menuflow.com");
+							}, 1500);	
 						}
 					}
 				});
@@ -255,11 +257,12 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
 						if (rsp == 'true') {
-							window.location.replace("http://menuflow.com");
+							setTimeout(function(){
+								window.location.replace("http://menuflow.com");
+							}, 1500);	
 						}
 					}
 				});
-				
 			}, 500);	 		
 		}
 	});
