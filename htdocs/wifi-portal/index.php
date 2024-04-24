@@ -50,7 +50,6 @@ $_SESSION['profile'] = array('venue' => array('serivce_id' => $ui['service_id'],
 </head>
 <body>
 <div class="launch-screen">
-	<?php echo '<pre>'; print_r($_SESSION['profile']); ?>
 	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
