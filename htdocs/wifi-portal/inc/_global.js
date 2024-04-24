@@ -64,7 +64,7 @@ var ipod = /ipod/i.test(navigator.userAgent.toLowerCase());
 var android = /android/i.test(navigator.userAgent.toLowerCase());
 var mac = /macintosh/i.test(navigator.userAgent.toLowerCase());
 var pc = /windows/i.test(navigator.userAgent.toLowerCase());
-if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'iPhone'; var ico = 'apl'; } else if (ipod) { var dev = 'iPod'; var ico = 'apl'; } else if (android) { var dev = 'Android'; var ico = 'dro'; } else if (mac) { var dev = 'Macbook'; var ico = 'apl'; } else if (pc) { var dev = 'PC Windows'; var ico = 'win'; } else { var dev = 'unknown'; var ico = 'unk';}
+if (ipad) { var dev = 'iPad'; var ico = 'apl'; } else if (iphone) { var dev = 'iPhone'; var ico = 'apl'; } else if (ipod) { var dev = 'iPod'; var ico = 'apl'; } else if (android) { var dev = 'Android'; var ico = 'dro'; } else if (mac) { var dev = 'Macbook'; var ico = 'apl'; } else if (pc) { var dev = 'Windows'; var ico = 'win'; } else { var dev = 'Unknown'; var ico = 'unk';}
 
 // check device for repeat visit 
 $.ajax({
