@@ -13,8 +13,8 @@ if ($_SESSION['profile']['wifi']['vendor'] == 'ubnt') {
 	$controller_url = $_SESSION['profile']['wifi']['auth_url'];
 	$controller_usr = $_SESSION['profile']['wifi']['auth_usr'];
 	$controller_psw = $_SESSION['profile']['wifi']['auth_psw'];
-	$site_id = $_SESSION['profile']['wifi']['vendor_id'];
-	$duration = 2000; // mins to allow
+	$site_id = $_SESSION['profile']['wifi']['site_id'];
+	$duration = 240; // mins to allow
 	$controller_ver = '8.1.113';
 	
 	$unifi_connection = new UniFi_API\Client($controller_usr, $controller_psw, $controller_url, $site_id, $controller_ver, false);
