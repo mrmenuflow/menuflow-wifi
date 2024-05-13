@@ -125,3 +125,6 @@ input {
 	height:1.5rem; 
 	color: #746A60;
 }
+#user {
+	text-transform: capitalize;
+}

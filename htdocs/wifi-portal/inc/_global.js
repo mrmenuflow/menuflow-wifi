@@ -82,14 +82,14 @@ $.ajax({
 		if (crm_id > 0) {
 			if (crm_optin == 0) {
 				// personalize screen 
-				$('#guest_return_optin #user').text(crm_name[0]);
+				$('#guest_return_optin #user').text(data.guest.name);
 				
 				// show return connecting with optin screen
 				setTimeout(function(){ as_return_optin.show(); }, 500);		
 			}
 			else {
 				// personalize screen 
-				$('#guest_return #user').text(crm_name[0]);
+				$('#guest_return #user').text(data.guest.name);
 				
 				// show return connecting screen
 				setTimeout(function(){ as_return.show(); }, 500);
