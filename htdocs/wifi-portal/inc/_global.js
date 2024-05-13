@@ -131,17 +131,25 @@ $.ajax({
 
 // expand terms
 $('body').on('click', '#view_terms', function(e) {
-	$('.offcanvas').animate({height:'90%'}, 500);
+	$('.launch-screen .offcanvas').animate({height:'90%'}, 500);
 	$('.terms_info').fadeIn(800);
+	$('.offcanvas').css("background","rgba(239, 223, 218, 1)");
+	$('.close_terms').fadeIn(700);
+});
+// expand privacy
+$('body').on('click', '#view_privacy', function(e) {
+	$('.launch-screen .offcanvas').animate({height:'90%'}, 500);
+	$('.privacy_info').fadeIn(800);
 	$('.offcanvas').css("background","rgba(239, 223, 218, 1)");
 	$('.close_terms').fadeIn(700);
 });
 
 // hide terms
 $('body').on('click', '.close_terms', function(e) {
-	$('.offcanvas').animate({ height:'225px' }, 500);
+	$('.launch-screen .offcanvas').animate({ height:'225px' }, 500);
 	$('.close_terms').fadeOut(400);
 	$('.terms_info').fadeOut(400);
+	$('.privacy_info').fadeOut(400);
 });
 
 // move to name screen

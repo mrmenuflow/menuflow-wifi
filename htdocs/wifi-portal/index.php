@@ -33,7 +33,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_config.php');
 </head>
 <body>
 <div class="launch-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="privacy" aria-labelledby="offcanvasBottomLabel" style="height:225px;">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="close_terms float-end">
@@ -44,10 +44,12 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_config.php');
 			</div>	
 			<div class="w-100 p-2 pt-0 terms_info">
 				<p class="mt-3">
-					When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. 
-					This information might be about your preferences or device and is mostly used to make the site work. 
-					The information does not usually directly identify you, but it can give you a more personalised menu experience.
-					Shown below are the cookies this service uses.
+					<?php include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_terms.php');?>
+				</p>
+			</div>
+			<div class="w-100 p-2 pt-0 privacy_info">
+				<p class="mt-3">
+					<?php include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_privacy.php');?>
 				</p>
 			</div>
 		</div>
@@ -94,7 +96,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_config.php');
 </div>
 
 <div class="optin-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_optin" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_optin" aria-labelledby="offcanvasBottomLabel" style="height:225px;">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0">
 				<h2><?php echo $ui['txt_optin_title'];?></h2>
@@ -113,7 +115,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_config.php');
 </div>
 
 <div class="connecting-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_connect" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_connect" aria-labelledby="offcanvasBottomLabel" style="height:235px;">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0 text-center mt-5">
 				<h2>
@@ -129,7 +131,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/inc/_config.php');
 </div>
 
 <div class="return-screen">
-	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_return" aria-labelledby="offcanvasBottomLabel">
+	<div class="offcanvas offcanvas-bottom m-0" data-bs-backdrop="false" tabindex="-1" id="guest_return" aria-labelledby="offcanvasBottomLabel" style="height:235px;">
 		<div class="offcanvas-body">
 			<div class="w-100 p-2 pb-0 text-center mt-5">
 				<h2>

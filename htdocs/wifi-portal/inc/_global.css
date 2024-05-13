@@ -76,7 +76,7 @@ h2 {
 	text-transform: lowercase;
 	margin-bottom: 8px; 
 }
-.terms_info { 
+.terms_info, .privacy_info { 
 	display: none;
 	font-family: Manrope, sans-serif;
 	font-weight: 400;
@@ -88,7 +88,7 @@ h2 {
 	height:24px;
 }
 .offcanvas, .offcanvas.sm {
-	height:225px!important;
+	height:225px;
 	border-radius: 18.5px;
 	border: 3px solid #e6d5cd;
 	background: rgba(239,223,218,0.75);
