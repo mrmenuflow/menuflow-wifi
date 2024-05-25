@@ -24,4 +24,29 @@ if ($_SESSION['profile']['wifi']['vendor'] == 'ubnt') {
 	
 	echo json_encode($auth_result, JSON_PRETTY_PRINT);
 }
+
+// mist authentication
+else if ($_SESSION['profile']['wifi']['vendor'] == 'mist') {
+	// build required dataset
+	$secret = $_SESSION['profile']['wifi']['auth_key']; 
+	$authorize_min = 1440;  // 7 days Duration (in minutes) 
+	$download_kbps = 0;  		 // Download limit (in kbps) per client. 
+	$upload_kbps = 0;  			 // Upload limit (in kbps) per client. 
+	$quota_mbytes = 0;  		 // Quota (in mbytes) per client. (0 = unlimited)
+	$context = sprintf('%s/%s/%s/%d/%d/%d/%d',
+		$_SESSION['profile']['wifi']['site_id'], $_SESSION['profile']['wifi']['ap_mac'], $_SESSION['profile']['device']['mac'],
+		$authorize_min,
+		$download_kbps, $upload_kbps, $quota_mbytes
+	);
+	$token = urlencode(base64_encode($context));
+	$extra = '&forward=' . urlencode('https://google.com'); // URL the user is forwarded to after authorisation		
+	$expires = time() + 120;  // The time until which the authorisation URL is valid
+	$payload = sprintf('expires=%d&token=%s%s', $expires, $token, $extra);
+	$signature = urlencode(base64_encode(hash_hmac('sha1', $payload, $secret, true)));
 	
+	// build auth url
+	$redirect_url = sprintf('http://portal.mist.com/authorize?signature=%s&%s', $signature, $payload);
+
+	// execute url
+	$result = file_get_contents($redirect_url);
+}

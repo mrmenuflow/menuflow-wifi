@@ -108,17 +108,15 @@ $.ajax({
 					type: 'POST',
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
-						if (rsp == 'true') {
-							setTimeout(function(){
-								window.location.replace("http://menuflow.com");								
-								$.ajax({
-									url: '/inc/_builder',
-									type: 'POST',
-									data: { action: 'authed' },
-									success: function (rsp) { }
-								});
-							}, 1500);	
-						}
+						setTimeout(function(){
+							window.location.replace("http://google.com");								
+							$.ajax({
+								url: '/inc/_builder',
+								type: 'POST',
+								data: { action: 'authed' },
+								success: function (rsp) { }
+							});
+						}, 1500);	
 					}
 				});
 			}
