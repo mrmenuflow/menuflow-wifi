@@ -109,7 +109,7 @@ $.ajax({
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
 						setTimeout(function(){
-							window.location.replace("http://google.com");								
+							window.location.replace("https://www.lamaisonanibychefizu.com");								
 							$.ajax({
 								url: '/inc/_builder',
 								type: 'POST',
@@ -271,7 +271,7 @@ $('body').on('click', '#opt_in,#opt_out', function(e) {
 					data: { action: 'auth_guest' },
 					success: function (rsp) { 
 						setTimeout(function(){
-							window.location.replace("http://google.com");								
+							window.location.replace("https://www.lamaisonanibychefizu.com");								
 							$.ajax({
 								url: '/inc/_builder',
 								type: 'POST',
